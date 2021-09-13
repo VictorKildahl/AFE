@@ -1,8 +1,8 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { AppModule } from '../app.module';
+import { ClientOverviewComponent } from './client-overview/client-overview.component';
 
-const routes: Routes = [{ path: 'appmodule', component: AppModule }];
+const routes: Routes = [{ path: '', component: ClientOverviewComponent }];
 
 @NgModule({
   imports: [RouterModule.forChild(routes)],

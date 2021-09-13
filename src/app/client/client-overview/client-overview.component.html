@@ -1,1 +1,7 @@
-<p>client-overview works!</p>
+<h2>Clients</h2>
+<ul>
+  <li *ngFor="let client of clients$ | async">
+    Client name is {{ client.first_name }} {{ client.last_name }} and the
+    clients email is {{ client.email }}
+  </li>
+</ul>

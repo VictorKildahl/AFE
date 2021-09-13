@@ -2,6 +2,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { RouterModule } from '@angular/router';
+import { httpInterceptorProviders } from 'src';
 import { AppRoutingModule } from './app-routing/app-routing.module';
 import { AppComponent } from './app.component';
 import { CourseModule } from './course/course.module';
@@ -21,10 +22,9 @@ import { PageNotFoundComponent } from './page-not-found/page-not-found.component
     CourseModule,
     RouterModule,
     AppRoutingModule,
-    // ClientModule,
     HttpClientModule,
   ],
-  providers: [],
+  providers: [httpInterceptorProviders],
   bootstrap: [AppComponent],
 })
 export class AppModule {}
