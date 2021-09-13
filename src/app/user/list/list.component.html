@@ -1,0 +1,7 @@
+<h3>List works!</h3>
+<ul style="list-style-type: none">
+  <li *ngFor="let billionaire of billionaires$ | async; index as i">
+    <app-user-list-item [billionaire]="billionaire"> </app-user-list-item>
+    <a routerLink="{{ i }}">Details</a>
+  </li>
+</ul>
