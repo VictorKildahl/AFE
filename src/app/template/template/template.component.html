@@ -1,0 +1,48 @@
+<h1>Template-driven forms</h1>
+<form #f="ngForm" (ngSubmit)="onSubmit(f)">
+  <label for="name">Name</label>
+  <input type="text" name="name" ngModel />
+  <div
+    class="form-wrapper"
+    ngModelGroup="password"
+    appPassword
+    #password="ngModelGroup"
+  >
+    <label for="password">Password</label>
+    <input type="text" name="password" ngModel />
+    <label for="confirm_password">Confirm password</label>
+    <input type="text" name="confirm_password" ngModel />
+    <div *ngIf="password.invalid && (password.dirty || password.touched)">
+      <div *ngIf="password.errors?.must_be_set">
+        {{ password.errors?.must_be_set }}
+      </div>
+    </div>
+  </div>
+  <label for="race">Race</label>
+  <select name="race" ngModel>
+    <option *ngFor="let race of races$ | async" [ngValue]="race">
+      {{ race.name }}
+    </option>
+  </select>
+  <label for="class">Class</label>
+  <select name="class" ngModel>
+    <option *ngFor="let class of classes$ | async" [ngValue]="class">
+      {{ class.name }}
+    </option>
+  </select>
+  <label for="level">Level</label>
+  <input type="text" name="level" ngModel />
+  <label for="description">Description</label>
+  <input type="text" name="description" ngModel />
+  <button type="submit">Submit</button>
+</form>
+<h2>Model</h2>
+<pre
+  >{{ f.value | json }}
+</pre>
+<pre>
+	errors: 
+	{{ password.errors | json }}
+	status:
+	{{ f.status }}
+</pre>

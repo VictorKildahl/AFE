@@ -1,0 +1,46 @@
+<h1>Reactive-driven forms</h1>
+<form [formGroup]="profileForm" (ngSubmit)="onSubmit()">
+  <div class="form-wrapper">
+    <label for="name">Name</label>
+    <input type="text" formControlName="name" />
+    <div formGroupName="password">
+      <label for="passwords">Password</label>
+      <input type="text" formControlName="passwords" />
+      <label for="confirm_password">Confirm password</label>
+      <input type="text" formControlName="confirm_password" />
+      <div *ngIf="password.invalid && (password.dirty || password.touched)">
+        <div *ngIf="password.errors?.must_be_set">
+          {{ password.errors?.must_be_set }}
+        </div>
+      </div>
+    </div>
+    <label for="race">Race</label>
+    <select formControlName="race" [compareWith]="compareRaces">
+      <option *ngFor="let race of races$ | async" [ngValue]="race">
+        {{ race.name }}
+      </option>
+    </select>
+    <label for="class">Class</label>
+    <select formControlName="class" [compareWith]="compareClasses">
+      <option *ngFor="let class of classes$ | async" [ngValue]="class">
+        {{ class.name }}
+      </option>
+    </select>
+    <label for="level">Level</label>
+    <input type="text" formControlName="level" />
+    <label for="description">Description</label>
+    <input type="text" formControlName="description" />
+    <button type="submit">Submit</button>
+    <button type="button" (click)="onAutofill()">Autofill</button>
+  </div>
+</form>
+<h2>Model</h2>
+<pre
+  >{{ profileForm.value | json }}
+</pre>
+<pre>
+errors: 
+{{ password.errors | json }}
+status:
+{{ profileForm.status }}
+</pre>

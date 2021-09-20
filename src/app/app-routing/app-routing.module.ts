@@ -14,6 +14,16 @@ const routes: Routes = [
     loadChildren: () =>
       import('../client/client.module').then((m) => m.ClientModule),
   },
+  {
+    path: 'reactive',
+    loadChildren: () =>
+      import('../reactive/reactive.module').then((m) => m.ReactiveModule),
+  },
+  {
+    path: 'template',
+    loadChildren: () =>
+      import('../template/template.module').then((m) => m.TemplateModule),
+  },
   { path: '**', component: PageNotFoundComponent },
 ]; // sets up routes constant where you define your routes
 
