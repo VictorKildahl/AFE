@@ -1,7 +1,7 @@
 <h1>Template-driven forms</h1>
 <form #f="ngForm" (ngSubmit)="onSubmit(f)">
   <label for="name">Name</label>
-  <input type="text" name="name" ngModel />
+  <input type="text" name="name" ngModel required />
   <div
     class="form-wrapper"
     ngModelGroup="password"
@@ -9,7 +9,7 @@
     #password="ngModelGroup"
   >
     <label for="password">Password</label>
-    <input type="text" name="password" ngModel />
+    <input type="text" name="password" ngModel required />
     <label for="confirm_password">Confirm password</label>
     <input type="text" name="confirm_password" ngModel />
     <div *ngIf="password.invalid && (password.dirty || password.touched)">
@@ -19,19 +19,19 @@
     </div>
   </div>
   <label for="race">Race</label>
-  <select name="race" ngModel>
+  <select name="race" ngModel required>
     <option *ngFor="let race of races$ | async" [ngValue]="race">
       {{ race.name }}
     </option>
   </select>
   <label for="class">Class</label>
-  <select name="class" ngModel>
+  <select name="class" ngModel required>
     <option *ngFor="let class of classes$ | async" [ngValue]="class">
       {{ class.name }}
     </option>
   </select>
   <label for="level">Level</label>
-  <input type="text" name="level" ngModel />
+  <input type="text" name="level" ngModel min="1" max="60" />
   <label for="description">Description</label>
   <input type="text" name="description" ngModel />
   <button type="submit">Submit</button>

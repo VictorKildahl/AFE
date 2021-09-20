@@ -17,8 +17,12 @@ export class PasswordDirective implements Validator {
 
   validate(control: AbstractControl): ValidationErrors | null {
     return control.value.password?.length === 0 ||
-      control.value.confirm_password?.length === 0
-      ? { must_be_set: 'password and confirm_password must be set' }
+      control.value.confirm_password?.length === 0 ||
+      control.value.password !== control.value.confirm_password
+      ? {
+          must_be_set:
+            'password and confirm_password must be set and equal to eachother',
+        }
       : null;
   }
 }
